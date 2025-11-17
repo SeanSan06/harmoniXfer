@@ -46,19 +46,17 @@ html, body {
     color: white;
 }
 
-/* Main area */
-#main-area {
+/* Content area */
+#content-area {
     display: flex;
     flex-direction: column;
-
-    height: calc(100% - 4rem);
 }
 
 /* Hero area */
 #hero-area {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-evenly;
     align-items: center;
 
     height: calc(100vh - 4rem);
@@ -66,12 +64,22 @@ html, body {
     background-color: white;
 }
 
-#harmoniXfer-h1 {
-    font-size: 3rem;
+#title-sub-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#harmoniXfer-title {
+    font-size: 8rem;
     padding: 8px;
     border-radius: 8px;
+    margin-bottom: 0px;
+}
 
-    background-color: green;
+#harmoniXfer-caption {
+    font-size: 2em;
+    margin-top: 0px;
 }
 
 #transfer-song-button {
@@ -83,3 +91,25 @@ html, body {
     flex-direction: column;
     align-items: center;
 }
+
+
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-right: 100%;
+    animation: marquee 4s linear infinite;
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+
