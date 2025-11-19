@@ -118,5 +118,31 @@ html, body {
     align-items: center;
 }
 
+#card-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
+    width: 100%;
+}
 
+#youtube-to-spotify {
+    width: 22.5%;
+    aspect-ratio: 1/1.4;
+
+    background-color: red;
+}
+
+#database {
+    width: 22.5%;
+    aspect-ratio: 1/1.4;
+
+    background-color: rgb(255, 204, 0);
+}
+
+#spotify-to-youtube {
+    width: 22.5%;
+    aspect-ratio: 1/1.4;
+
+    background-color: green;
+}
