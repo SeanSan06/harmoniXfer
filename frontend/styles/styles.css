@@ -88,6 +88,32 @@ html, body {
         text-align: left;
     }
 
+    /* Jump animation for HarmonXfer title */
+    #harmoniXfer-title span {
+        display: inline-block;
+        animation: jump 0.5s ease-in-out 1;
+    }
+
+    @keyframes jump {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-24px);
+        }
+    }
+
+    #harmoniXfer-title span:nth-child(1) {animation-delay: 0.15s; }
+    #harmoniXfer-title span:nth-child(2) {animation-delay: 0.30s; }
+    #harmoniXfer-title span:nth-child(3) {animation-delay: 0.45s; }
+    #harmoniXfer-title span:nth-child(4) {animation-delay: 0.60s; }
+    #harmoniXfer-title span:nth-child(5) {animation-delay: 0.75s; }
+    #harmoniXfer-title span:nth-child(6) {animation-delay: 0.90s; }
+    #harmoniXfer-title span:nth-child(7) {animation-delay: 1.05s; }
+    #harmoniXfer-title span:nth-child(8) {animation-delay: 1.20s; }
+    #harmoniXfer-title span:nth-child(9) {animation-delay: 1.35s; }
+    #harmoniXfer-title span:nth-child(10) {animation-delay: 1.50s; }
+
 #harmoniXfer-caption {
     font-size: 2em;
     margin-top: 0px;
@@ -97,7 +123,7 @@ html, body {
 }
 
     #harmoniXfer-caption.animate {
-        transform: translateX(-1.9em);
+        transform: translateX(-1.35em);
         text-align: left;
     }
 

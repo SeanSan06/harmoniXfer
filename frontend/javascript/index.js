@@ -3,7 +3,7 @@ function sleep(ms) {
 }
 
 window.addEventListener("load", async () => {
-    await sleep(2000);
+    await sleep(1600);
 
     document.querySelector("#harmoniXfer-title").classList.add("animate");
     document.querySelector("#harmoniXfer-caption").classList.add("animate");
