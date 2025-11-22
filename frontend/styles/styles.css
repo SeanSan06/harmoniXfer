@@ -152,10 +152,22 @@ html, body {
     height: 600px;
 }
 
-    #image.appear {
+    #image.appear-fade-in {
         width: 500px;
         height: 600px;
+
+        animation: fadeIn 1.5s linear;
+
         background-color: red;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Start as transparent */
+        }
+        to {
+            opacity: 1; /* End as opaque */
+        }
     }
 
 /* How it works area */

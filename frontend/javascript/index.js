@@ -10,6 +10,6 @@ window.addEventListener("load", async () => {
     document.querySelector("#transfer-song-button").classList.add("animate");
     document.querySelector("#title-caption-button").classList.add("animate");
 
-    await sleep(2000);
-    document.querySelector("#image").classList.add("appear");
+    await sleep(900);
+    document.querySelector("#image").classList.add("appear-fade-in");
 });
