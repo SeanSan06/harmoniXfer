@@ -54,6 +54,10 @@ html, body {
 
 /* Hero area */
 #hero-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     background-color: white;
 }
 
@@ -63,7 +67,7 @@ html, body {
     justify-content: space-evenly;
     align-items: flex-start;
 
-    width: 100%;
+    width: 60%;
     height: calc(100vh - 4rem);
 }
 
@@ -142,6 +146,12 @@ html, body {
     #transfer-song-button.animate {
         transform: translateX(6em);
     }
+
+#image {
+    width: 500px;
+    height: 600px;
+    background-color: red;
+}
 
 /* How it works area */
 #how-it-works-area {
