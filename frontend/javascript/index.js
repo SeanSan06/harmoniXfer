@@ -1,9 +1,9 @@
-// A sleep function that takes in 'ms' as input and pauses for that amount of time
+// Need a custom sleep function, JS doesn't have one
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// When page is loaded or reloaded run the slide to left animation and make image fade in
+// Needs to gradually let each part of the page load for clean animation
 window.addEventListener("load", async () => {
     await sleep(1600);
     document.querySelector("#harmoniXfer-title").classList.add("animate");
