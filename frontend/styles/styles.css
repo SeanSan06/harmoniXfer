@@ -22,7 +22,7 @@ html, body {
     align-items: center;
 
     width: 100%;
-    height: 4rem;
+    height: 5rem;
     margin: 0;
     padding: 0;
 
@@ -30,7 +30,7 @@ html, body {
 }
 
 #website-name-text {
-    font-size: 1.5rem;
+    font-size: 2rem;
 
     color: white;
 }
@@ -44,9 +44,11 @@ html, body {
 }
 
 #nav-bar-area .navigation-text p {
-    font-size: 1.5rem;
+    font-size: 2rem;
+}
 
-    color: white;
+#home p, #transfer p, #about p {
+    color: rgb(52, 226, 52);
 }
 
 
@@ -69,6 +71,8 @@ html, body {
     
     width: 60%;
     height: calc(100vh - 4rem);
+
+    z-index: 5;
 }
 
 #title-sub-area {
@@ -108,17 +112,17 @@ html, body {
         }
     }
 
-    #harmoniXfer-title span:nth-child(1) {animation-delay: 0.15s;}
-    #harmoniXfer-title span:nth-child(2) {animation-delay: 0.30s;}
-    #harmoniXfer-title span:nth-child(3) {animation-delay: 0.45s;}
-    #harmoniXfer-title span:nth-child(4) {animation-delay: 0.60s;}
-    #harmoniXfer-title span:nth-child(5) {animation-delay: 0.75s;}
-    #harmoniXfer-title span:nth-child(6) {animation-delay: 0.90s;}
-    #harmoniXfer-title span:nth-child(7) {animation-delay: 1.05s;}
-    #harmoniXfer-title span:nth-child(8) {animation-delay: 1.20s;}
-    #harmoniXfer-title span:nth-child(9) {animation-delay: 1.35s;}
-    #harmoniXfer-title span:nth-child(10) {animation-delay: 1.50s;}
-    #harmoniXfer-title span:nth-child(11) {animation-delay: 1.65s;}
+    #harmoniXfer-title span:nth-child(1) {animation-delay: 0.10s;}
+    #harmoniXfer-title span:nth-child(2) {animation-delay: 0.20s;}
+    #harmoniXfer-title span:nth-child(3) {animation-delay: 0.30s;}
+    #harmoniXfer-title span:nth-child(4) {animation-delay: 0.40s;}
+    #harmoniXfer-title span:nth-child(5) {animation-delay: 0.50s;}
+    #harmoniXfer-title span:nth-child(6) {animation-delay: 0.60s;}
+    #harmoniXfer-title span:nth-child(7) {animation-delay: 0.70s;}
+    #harmoniXfer-title span:nth-child(8) {animation-delay: 0.80s;}
+    #harmoniXfer-title span:nth-child(9) {animation-delay: 0.90s;}
+    #harmoniXfer-title span:nth-child(10) {animation-delay: 1.00s;}
+    #harmoniXfer-title span:nth-child(11) {animation-delay: 1.10s;}
 
 #harmoniXfer-caption {
     font-size: 2em;
@@ -129,7 +133,7 @@ html, body {
 }
 
     #harmoniXfer-caption.animate {
-        transform: translateX(-1.35em);
+        transform: translateX(-1.8em);
         text-align: left;
     }
 
@@ -146,7 +150,7 @@ html, body {
 }
 
     #transfer-song-button.animate {
-        transform: translateX(5.65em);
+        transform: translateX(5.4em);
     }
 
 #image {
@@ -199,7 +203,7 @@ html, body {
         z-index: -1;
         border-radius: 16px;
         padding: 8px;
-        animation: 5s spin linear infinite;
+        animation: 10s spin linear infinite;
 
         opacity: 0;
         transition: opacity 3s linear;
