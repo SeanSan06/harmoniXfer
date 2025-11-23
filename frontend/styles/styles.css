@@ -7,6 +7,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    z-index: -3;
 
     background-color: lightgray;
 }
@@ -55,6 +56,7 @@ html, body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    z-index: -2;
 
     background-color: white;
 }
@@ -150,10 +152,16 @@ html, body {
 #image {
     width: 500px;
     height: 600px;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 16px;
+    position: relative;
+
+    background-color: aqua;
 }
 
     /* Fade in */
-    #image.appear-fade-in {
+    /* #image.appear-fade-in {
         width: 500px;
         height: 600px;
 
@@ -162,16 +170,26 @@ html, body {
 
     @keyframes fadeIn {
         from {
-            background-color: white /* Start as white */
+            background-color: white;
         }
         to {
-            background-color: red /* End as red */
+            background-color: red;
         }
-    }
+    } */
 
     /* Border animation */
-    #image {
-        border: 8px solid green;
+    #image::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: red;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+        border-radius: 16px;
+        padding: 8px;
     }
 
 /* ========== How it works area ========== */
