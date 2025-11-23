@@ -178,18 +178,41 @@ html, body {
     } */
 
     /* Border animation */
-    #image::after {
+
+    /* Border animation */
+    @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    #image::after, #image::before {
         content: '';
         position: absolute;
         height: 100%;
         width: 100%;
-        background-image: conic-gradient(red, rgb(255, 191.5, 0), green, rgb(255, 191.5, 0), red);
+        background-image: conic-gradient(from var(--angle), transparent 70%, red);
         top: 50%;
         left: 50%;
         translate: -50% -50%;
         z-index: -1;
         border-radius: 16px;
         padding: 8px;
+        animation: 3s spin linear infinite;
+    }
+
+        @keyframes spin {
+            from {
+                --angle: 0deg;
+            }
+            to {
+                --angle: 360deg;
+            }
+        }
+
+    #image::before {
+        filter: blur(1.5rem);
+        opacity: 0.5;
     }
 
 /* ========== How it works area ========== */
