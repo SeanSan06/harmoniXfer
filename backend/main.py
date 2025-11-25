@@ -1,7 +1,7 @@
 from fastapi import FastAPI                 # Backend Framework
-from fastapi.responses import FileResponse  # Send file to broswer
-from fastapi.staticfiles import StaticFiles # Serve folder
-from pydantic import BaseModel              # Helps type check
+from fastapi.responses import FileResponse  # Send a specifc HTML, CSS, & JS file to broswer
+from fastapi.staticfiles import StaticFiles # Serves a folder's files automatically
+from pydantic import BaseModel              # Helps with type check and type conversion
 
 app = FastAPI()
 
@@ -15,10 +15,15 @@ class SpotifyToYoutube(BaseModel):
     password: str
     spotify_playlist_link: str
 
-# End points
-# @app.get("/")
+""" Youtube API Endpoints """
+# @app.get("/youtube")
 # def home():
-#     return {"FastAPI is running"}
+#     return {"Youtube API"}
+
+""" Spotify API Endpoints """
+# @app.get("/spotify")
+# def home():
+#     return {"Spotify API"}
 
 # Serve Webpages
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
