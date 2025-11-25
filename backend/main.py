@@ -3,14 +3,6 @@ from fastapi.responses import FileResponse  # Send a specifc HTML, CSS, & JS fil
 from fastapi.staticfiles import StaticFiles # Serves a folder's files automatically
 from pydantic import BaseModel              # Helps with type check and type conversion
 
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-API_KEY = os.getenv("YOUTUBE_API_KEY")
-print(API_KEY)
-
 app = FastAPI()
 
 class YoutubeToSpotify(BaseModel):
