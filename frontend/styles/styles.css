@@ -229,12 +229,16 @@ html, body {
         opacity: 0.5;
     }
 
-/* ========== How it works area ========== */
+/* ========== Transfer songs area ========== */
 #transfer-songs-area {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#transfer-songs-h2 {
+    font-size: 4rem;
 }
 
 #how-it-works-area {
@@ -293,6 +297,11 @@ html, body {
 
 .text-box {
     width: 20rem;
+}
+
+/* ========== How it works area ========== */
+#how-it-works-h2 {
+    
 }
 
 /* ========== Footer area ========== */
