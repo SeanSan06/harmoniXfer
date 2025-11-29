@@ -26,9 +26,9 @@ class SpotifyToYoutube(BaseModel):
     spotify_playlist_link: str
 
 """ Youtube API Endpoints """
-@app.get("/youtube_playlist/{playlist_id}")
-def playlist_endpoint(playlist_id: str):
-    return get_playlist_videos_title(playlist_id)
+@app.get("/youtube_playlist_id/{youtube_playlist_id}")
+def get_youtube_playlist_video_title(youtube_playlist_id: str):
+    return get_playlist_videos_title(youtube_playlist_id)
 
 """ Spotify API Endpoints """
 # @app.get("/spotify")

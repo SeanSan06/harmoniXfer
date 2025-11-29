@@ -1,3 +1,4 @@
+const backendURL = "http://127.0.0.1:8000/youtube_playlist_id"; 
 // Custom sleep function
 function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -28,9 +29,24 @@ window.addEventListener("DOMContentLoaded", () => {
     const button = qs<HTMLButtonElement>("#youtube_to_spotify_button")!;
 
     button?.addEventListener("click", () => {
-        const text = inputTextBox.value;
-        console.log("user tpyed in box", text);
+        const user_input = inputTextBox.value;
+        console.log("user tpyed in box", user_input);
+
+        get_youtube_playlist_video_title(user_input);
     });
 });
 
+async function get_youtube_playlist_video_title(user_input: string) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/youtube_playlist_id/${user_input}`);
 
+        if (!response.ok) {
+        throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();  // <-- Convert FastAPI JSON to JS object
+        console.log("Items from backend:", data);
+    } catch(error) {
+        console.error("Error fetching items:", error);
+    }
+}
