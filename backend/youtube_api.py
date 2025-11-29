@@ -2,11 +2,12 @@ import os
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
+# Get Youtube API key
 load_dotenv()
 API_KEY = os.getenv("YOUTUBE_API_KEY")
-
 YOUTUBE = build("youtube", "v3", developerKey=API_KEY)
 
+# Get Youtube video titles from a selected playlist
 def get_playlist_videos_title(playlist_id):
     videos = []
     next_page = None
