@@ -1,10 +1,15 @@
-from fastapi import FastAPI                  # Backend Framework
+from dotenv import load_dotenv                     # Load the keys in the env file
+from fastapi import FastAPI                        # Backend Framework
 from fastapi.middleware.cors import CORSMiddleware # CORS header to allow specify headers only
-from fastapi.responses import FileResponse   # Send a specifc HTML, CSS, & JS file to broswer
-from fastapi.staticfiles import StaticFiles  # Serves a folder's files automatically
-from pydantic import BaseModel               # Helps with type check and type conversion
+from fastapi.responses import FileResponse         # Send a specifc HTML, CSS, & JS file to broswer
+from fastapi.responses import RedirectResponse     # Lets broswer know what URL to go to
+from fastapi.staticfiles import StaticFiles        # Serves a folder's files automatically
+import os                                          # Get environmental variables
+from pydantic import BaseModel                     # Helps with type check and type conversion
+import requests                                    # HTTP client used to make API requests(For Spotify)
+from urllib.parse import urlencode                 # Helps format URLs(Spotify reqs specifc URL formats)
 
-from backend.youtube_api import get_playlist_videos_title
+from backend.youtube_api import get_playlist_videos_title # My own file
 
 app = FastAPI()
 
