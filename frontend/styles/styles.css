@@ -154,7 +154,7 @@ html, body {
         transform: translateX(5.4em);
     }
 
-#image {
+#statisics {
     width: 30vw;
     height: 75vh;
     box-sizing: border-box;
@@ -165,12 +165,13 @@ html, body {
     background-color: white;
 }
 
-.image-subarea {
+.statisics-subarea {
     color: white;
+    text-align: center;
 }
 
     /* Fade in */
-    #image.appear-fade-in {
+    #statisics.appear-fade-in {
         width: 30vw;
         height: 75vh;
 
@@ -179,7 +180,7 @@ html, body {
         background-color: green;
     }
 
-    .image-subarea.appear-fade-in {
+    .statisics-subarea.appear-fade-in {
         animation: fadeIn 1.5s linear;
 
         color: black;
@@ -204,7 +205,7 @@ html, body {
         inherits: false;
     }
 
-    #image::after, #image::before {
+    #statisics::after, #statisics::before {
         content: '';
         position: absolute;
         height: 100%;
@@ -231,12 +232,12 @@ html, body {
             }
         }
 
-    #image.appear-fade-in::after, #image.appear-fade-in::before {
+    #statisics.appear-fade-in::after, #statisics.appear-fade-in::before {
         transition-delay: 1s;
         opacity: 1;
     }
 
-    #image.appear-fade-in::before {
+    #statisics.appear-fade-in::before {
         filter: blur(1.5rem);
         opacity: 0.5;
     }

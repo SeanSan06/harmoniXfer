@@ -14,8 +14,8 @@ window.addEventListener("load", async () => {
     document.querySelector("#title-caption-button")!.classList.add("animate");
 
     await sleep(900);
-    document.querySelector("#image")!.classList.add("appear-fade-in");
-    document.querySelectorAll(".image-subarea").forEach(element => {
+    document.querySelector("#statisics")!.classList.add("appear-fade-in");
+    document.querySelectorAll(".statisics-subarea").forEach(element => {
         element.classList.add("appear-fade-in");
     });
 });

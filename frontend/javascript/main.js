@@ -22,8 +22,8 @@ window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function
     document.querySelector("#transfer-song-button").classList.add("animate");
     document.querySelector("#title-caption-button").classList.add("animate");
     yield sleep(900);
-    document.querySelector("#image").classList.add("appear-fade-in");
-    document.querySelectorAll(".image-subarea").forEach(element => {
+    document.querySelector("#statisics").classList.add("appear-fade-in");
+    document.querySelectorAll(".statisics-subarea").forEach(element => {
         element.classList.add("appear-fade-in");
     });
 }));
