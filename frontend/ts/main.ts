@@ -53,3 +53,11 @@ async function get_youtube_playlist_video_title(user_input: string) {
         console.error("Error fetching items:", error);
     }
 }
+
+// Clicking button scrols into song transfer area
+const scrollButton = document.getElementById("transfer-song-button") as HTMLButtonElement | null;
+const targetSection = document.getElementById("transfer-songs-area") as HTMLElement | null;
+
+scrollButton?.addEventListener("click", () => {
+    targetSection?.scrollIntoView({ behavior: "smooth" });
+});
