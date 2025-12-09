@@ -166,6 +166,8 @@ html, body {
     padding: 8px;
     border-radius: 16px;
     position: relative;
+    display: flex;
+    flex-direction: column;
 
     background-color: white;
 }
