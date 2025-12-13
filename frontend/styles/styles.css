@@ -304,7 +304,7 @@ html, body {
 }
 
 #transfer-songs-h2 {
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 #card-area {
@@ -325,6 +325,31 @@ html, body {
     font-size: 2rem;
 }
 
+#card-title {
+    width: 100%;
+}
+
+#card-title-youtube-to-spotify {
+    width: 100%;
+    text-align: center;
+
+    background-color: blue;
+}
+
+#card-title-database {
+    width: 100%;
+    text-align: center;
+
+    background-color: red;
+}
+
+#card-title-spotify-to-youtube {
+    width: 100%;
+    text-align: center;
+
+    background-color: yellow;
+}
+
 .text-box-button {
     display: flex;
     flex-direction: column;
@@ -342,21 +367,21 @@ html, body {
 }
 
 #youtube-to-spotify {
-    width: 22.5%;
+    width: 25%;
     aspect-ratio: 1/1.4;
 
     background-color: red;
 }
 
 #database {
-    width: 22.5%;
+    width: 25%;
     aspect-ratio: 1/1.4;
 
     background-color: rgb(255, 204, 0);
 }
 
 #spotify-to-youtube {
-    width: 22.5%;
+    width: 25%;
     aspect-ratio: 1/1.4;
 
     background-color: green;
