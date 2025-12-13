@@ -307,19 +307,14 @@ html, body {
     font-size: 4rem;
 }
 
-#how-it-works-area {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 #card-area {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    box-sizing: border-box;
+    padding: 64px;
 
-    width: 100%;
+    width: 100vw;
 }
 
 #card-area .card {
@@ -372,8 +367,16 @@ html, body {
 }
 
 /* ========== How it works area ========== */
-#how-it-works-h2 {
-    
+#about-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#about-h2 {
+    font-size: 4rem;
 }
 
 /* ========== Footer area ========== */
