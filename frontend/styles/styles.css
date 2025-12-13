@@ -172,12 +172,19 @@ html, body {
     background-color: white;
 }
 
+#statisics-title {
+    font-size: 4em;
+    margin: 0px;
+    text-decoration: underline;
+}
+
 #statistics-grid {
     display: grid;
     flex: 1;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 2rem;
+    padding: 16px;
 
     color: white;
 }
@@ -194,13 +201,8 @@ html, body {
     text-align: center;
 }
 
-#statisics-title {
-    font-size: 4em;
-    margin: 0px;
-    text-decoration: underline;
-}
-
     /* Fade in */
+    /* Fade in for statistics box */
     #statisics.appear-fade-in {
         width: 30vw;
         height: 75vh;
@@ -227,14 +229,11 @@ html, body {
         }
     }
 
+    /* Fade in for statistics the 6 sub boxes */
     .statisics-grid-subarea.appear-fade-in {
         animation: subareaFadeIn 1.5s linear;
 
         background-color: lightgreen;
-        color: black;
-    }
-
-    .statisics-grid-subarea.appear-fade-in h3 {
         color: black;
     }
 
