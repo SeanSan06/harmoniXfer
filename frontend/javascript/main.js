@@ -15,15 +15,20 @@ function sleep(ms) {
 }
 // Home page animations upon loading
 window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () {
+    // Slide left animations
     console.log("Testing testing");
     yield sleep(1600);
     document.querySelector("#harmoniXfer-title").classList.add("animate");
     document.querySelector("#harmoniXfer-caption").classList.add("animate");
     document.querySelector("#transfer-song-button").classList.add("animate");
     document.querySelector("#title-caption-button").classList.add("animate");
+    // Fade in animations
     yield sleep(900);
     document.querySelector("#statisics").classList.add("appear-fade-in");
     document.querySelectorAll(".statisics-subarea").forEach(element => {
+        element.classList.add("appear-fade-in");
+    });
+    document.querySelectorAll(".statisics-grid-subarea").forEach(element => {
         element.classList.add("appear-fade-in");
     });
 }));

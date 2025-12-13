@@ -178,14 +178,15 @@ html, body {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 2rem;
+
+    color: white;
 }
 
 #statistics-grid h3 {
     margin: 0px;
     border-radius: 8px;
     font-size: 2rem;
-
-    background-color: lightgreen;
+    text-align: center;
 }
 
 .statisics-subarea {
@@ -225,6 +226,30 @@ html, body {
             color: black;
         }
     }
+
+    .statisics-grid-subarea.appear-fade-in {
+        animation: subareaFadeIn 1.5s linear;
+
+        background-color: lightgreen;
+        color: black;
+    }
+
+    .statisics-grid-subarea.appear-fade-in h3 {
+        color: black;
+    }
+
+    @keyframes subareaFadeIn {
+        from {
+            background-color: white;
+            color: white;
+        }
+        to {
+            background-color: lightgreen;
+            color: black;
+        }
+    }
+
+
 
 
     /* Border animation */

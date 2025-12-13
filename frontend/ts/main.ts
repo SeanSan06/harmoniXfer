@@ -6,6 +6,7 @@ function sleep(ms: number): Promise<void> {
 
 // Home page animations upon loading
 window.addEventListener("load", async () => {
+    // Slide left animations
     console.log("Testing testing");
     await sleep(1600);
     document.querySelector("#harmoniXfer-title")!.classList.add("animate");
@@ -13,9 +14,13 @@ window.addEventListener("load", async () => {
     document.querySelector("#transfer-song-button")!.classList.add("animate");
     document.querySelector("#title-caption-button")!.classList.add("animate");
 
+    // Fade in animations
     await sleep(900);
     document.querySelector("#statisics")!.classList.add("appear-fade-in");
     document.querySelectorAll(".statisics-subarea").forEach(element => {
+        element.classList.add("appear-fade-in");
+    });
+    document.querySelectorAll(".statisics-grid-subarea").forEach(element => {
         element.classList.add("appear-fade-in");
     });
 });
