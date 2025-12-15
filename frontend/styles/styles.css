@@ -191,14 +191,28 @@ html, body {
 
 #statistics-grid h3 {
     margin: 0px;
-    border-radius: 8px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
 .statisics-subarea {
     color: white;
     text-align: center;
+}
+
+.statisics-grid-subarea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.statisics-grid-subarea p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-size: 2.5rem;
 }
 
     /* Fade in */
@@ -304,7 +318,7 @@ html, body {
 }
 
 #transfer-songs-h2 {
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 #card-area {
@@ -312,16 +326,17 @@ html, body {
     flex-direction: row;
     justify-content: space-around;
     box-sizing: border-box;
-    padding: 64px;
+    padding-bottom: 64px;
 
     width: 100vw;
+    height: 600px;
 }
 
 #card-area .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     font-size: 2rem;
 }
 
@@ -329,32 +344,37 @@ html, body {
     width: 100%;
 }
 
-#card-title-youtube-to-spotify {
-    width: 100%;
-    text-align: center;
-
-    background-color: blue;
+.card-title h3 {
+    margin: 16px;
 }
 
-#card-title-database {
+#card-title-youtube-to-spotify {
     width: 100%;
     text-align: center;
 
     background-color: red;
 }
 
-#card-title-spotify-to-youtube {
+#card-title-database {
     width: 100%;
     text-align: center;
 
     background-color: yellow;
 }
 
+#card-title-spotify-to-youtube {
+    width: 100%;
+    text-align: center;
+
+    background-color: green;
+}
+
 .text-box-button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .text-box-button h4 {
@@ -368,23 +388,20 @@ html, body {
 
 #youtube-to-spotify {
     width: 25%;
-    aspect-ratio: 1/1.4;
 
-    background-color: red;
+    background-color: lightcoral;
 }
 
 #database {
     width: 25%;
-    aspect-ratio: 1/1.4;
 
-    background-color: rgb(255, 204, 0);
+    background-color: lightyellow;
 }
 
 #spotify-to-youtube {
     width: 25%;
-    aspect-ratio: 1/1.4;
 
-    background-color: green;
+    background-color: lightgreen;
 }
 
 .text-box {
