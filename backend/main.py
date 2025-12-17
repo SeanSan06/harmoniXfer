@@ -94,6 +94,30 @@ def get_spotify_user_account(spotfiy_access_token: str = Header(...)):
 
     return response.json()
 
+@app.post("/spotify/create-playlist")
+def create_spotify_playlist(
+    playlist_name: str,
+    spotfiy_access_token: str = Header(...)
+):
+    headers = {
+        "Authorization": f"Bearer {spotfiy_access_token}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "name": playlist_name,
+        "description": "Testing Spotify API",
+        "public": False
+    }
+
+    response = requests.post(
+        f"https://api.spotify.com/v1/me/playlists",
+        headers = headers,
+        json = payload
+    )
+
+    return response.json()
+
 
 """ Serve Webpages"""
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
