@@ -1,6 +1,7 @@
 from dotenv import load_dotenv                     # Load the keys in the env file
 from fastapi import FastAPI                        # Backend Framework
 from fastapi.middleware.cors import CORSMiddleware # CORS header to allow specify headers only
+from fastapi import Header                         # Helps format data sent to Spotify API
 from fastapi.responses import FileResponse         # Send a specifc HTML, CSS, & JS file to broswer
 from fastapi.responses import RedirectResponse     # Lets broswer know what URL to go to
 from fastapi.staticfiles import StaticFiles        # Serves a folder's files automatically
@@ -81,7 +82,7 @@ def callback(code : str):
     return token_data
 
 @app.get("/spotify/me")
-def get_spotify_user_account(spotfiy_access_token: str):
+def get_spotify_user_account(spotfiy_access_token: str = Header(...)):
     headers = {
         "Authorization": f"Bearer {spotfiy_access_token}"
     }
@@ -91,7 +92,7 @@ def get_spotify_user_account(spotfiy_access_token: str):
         headers = headers
     )
 
-    return response
+    return response.json()
 
 
 """ Serve Webpages"""
