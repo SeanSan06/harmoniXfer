@@ -209,9 +209,11 @@ def youtube_to_spotify(
         my_list.append(listIndex[0])
 
     # Get Spotify auth token
-    myToken = user_spotify_token
+    myToken = user_spotify_token[0]["access_token"]
 
     # For each song title try to get its Spotify URI
+    
+
     # Find the matching Spotify playlist ID given the playlist's title
     # Place each song using its URI into the existing playlist
 
