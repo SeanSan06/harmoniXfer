@@ -54,7 +54,9 @@ class SpotifySongURI(BaseModel):
 
 """ Youtube API Endpoints """
 @app.get("/youtube_playlist_id/{youtube_playlist_id}")
-def get_youtube_playlist_video_title(youtube_playlist_id: str):
+def get_youtube_playlist_video_title(
+    youtube_playlist_id: str
+):
     return get_playlist_videos_title(youtube_playlist_id)
 
 
@@ -74,7 +76,9 @@ def login_spotify():
     return RedirectResponse(url)
 
 @app.get("/auth/callback")
-def callback(code : str):
+def callback(
+    code : str
+):
     payload = {
         "grant_type": "authorization_code",
         "code": code,
@@ -90,7 +94,9 @@ def callback(code : str):
     return user_token_data
 
 @app.get("/spotify/me")
-def get_spotify_user_account(spotfiy_access_token: str = Header(...)):
+def get_spotify_user_account(
+    spotfiy_access_token: str = Header(...)
+):
     headers = {
         "Authorization": f"Bearer {spotfiy_access_token}"
     }
@@ -188,6 +194,19 @@ def add_songs_to_spotify_playlist(
     )
 
     return response.json()
+
+@app.post("/youtube-to-spotify")
+def youtube_to_spotify(
+    youtube_playlist_id: str,
+    spotify_playlist_name: str,
+):
+    YTlist = get_youtube_playlist_video_title(youtube_playlist_id)
+
+    my_list = []
+    for listIndex in YTlist:
+        my_list.append(listIndex[0])
+
+    return my_list
 
 
 """ Serve Webpages"""
