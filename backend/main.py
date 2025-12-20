@@ -202,41 +202,43 @@ def youtube_to_spotify(
     youtube_playlist_id: str,
     spotify_playlist_name: str,
 ):
-    yt_playlist_video_titles = get_youtube_playlist_video_title(youtube_playlist_id)
+    yt_playlist_video_information = get_youtube_playlist_video_title(youtube_playlist_id)
 
-    youtube_songs_title_list = []
-    for listIndex in yt_playlist_video_titles:
-        youtube_songs_title_list.append(listIndex[0])
+    yt_songs_title_list = []
+    for listIndex in yt_playlist_video_information:
+        yt_songs_title_list.append(listIndex[0])
 
     # Get Spotify user's auth token
     user_spotify_token_local = user_spotify_token[0]["access_token"]
 
-    # For each song title get its Spotify URI
+    # For each song title get its Spotify URI and avoids crashes if Spotify API finds nothing
     song_uri_list = []
-    for song_title in youtube_songs_title_list:
+    for song_title in yt_songs_title_list:
         search_response = get_spotify_uri(song_title, user_spotify_token_local)
         items = search_response["tracks"]["items"]
 
-        if items:  # avoid crashes if Spotify finds nothing
+        if items:
             song_uri_list.append(items[0]["uri"])
 
     # Find the matching Spotify playlist ID given the playlist's title that user typed in
-    matching_playlist_id = ""
+    spotify_playlist_id = ""
     all_spotify_playlist_info = get_spotify_playlist_id(user_spotify_token_local)["items"]
     for playlist_info in all_spotify_playlist_info:
         if(playlist_info["name"] == spotify_playlist_name):
-            matching_playlist_id = playlist_info["id"]
-    if not matching_playlist_id:
+            spotify_playlist_id = playlist_info["id"]
+
+    if not spotify_playlist_id:
         return {"error": "Playlist not found"}
       
     # Place each song using its URI into the existing Spotify playlist using its playlist ID(WIP)
     add_songs_to_spotify_playlist(
-        spotify_playlist_id = matching_playlist_id,
+        spotify_playlist_id = spotify_playlist_id,
         spotify_song_track_URI_obj = SpotifySongURI(track_uris=song_uri_list),
         spotfiy_access_token = user_spotify_token_local
     )
 
-    return youtube_songs_title_list, user_spotify_token_local, song_uri_list, matching_playlist_id
+    return {"sucess": f"{len(song_uri_list)} songs have been transfered!"}
+    # Important variables "yt_songs_title_list, user_spotify_token_local, song_uri_list, spotify_playlist_id"
 
 
 """ Serve Webpages"""
