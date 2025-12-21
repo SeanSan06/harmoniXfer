@@ -33,14 +33,18 @@ window.addEventListener("DOMContentLoaded", () => {
         return el as T;
     }
 
-    const inputTextBox = qs<HTMLInputElement>("#youtube_playlist_id_1")!;
+    const youtubeInputTextBox = qs<HTMLInputElement>("#youtube_playlist_id_1")!;
+    const spotifyInputTextBox = qs<HTMLInputElement>("#spotify_playlist_id_1")!;
     const button = qs<HTMLButtonElement>("#youtube_to_spotify_button")!;
 
     button?.addEventListener("click", () => {
-        const user_input = inputTextBox.value;
-        console.log("user tpyed in box", user_input);
+        const youtubeUserInput = youtubeInputTextBox.value;
+        const spotifyUserInput = spotifyInputTextBox.value;
+        console.log("user typed in box", youtubeUserInput);
+        console.log("user typyed in box", spotifyUserInput);
 
-        get_youtube_playlist_video_title(user_input);
+        // get_youtube_playlist_video_title(youtubeUserInput);
+        transfer_songs_from_youtube_to_spotify(youtubeUserInput, spotifyUserInput);
     });
 });
 
@@ -49,14 +53,38 @@ async function get_youtube_playlist_video_title(user_input: string) {
         const response = await fetch(`http://127.0.0.1:8000/youtube_playlist_id/${user_input}`);
 
         if (!response.ok) {
-        throw new Error("Network response was not ok");
+            throw new Error("Network response was not ok");
         }
 
-        const data = await response.json();  // <-- Convert FastAPI JSON to JS object
+        const data = await response.json();  // Convert FastAPI JSON to JS object
         console.log("Items from backend:", data);
     } catch(error) {
         console.error("Error fetching items:", error);
     }
+}
+
+async function transfer_songs_from_youtube_to_spotify(youtubeUserInput: string, spotifyUserInput: string) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/youtube-to-spotify`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                youtube_playlist_id: youtubeUserInput,
+                spotify_playlist_name: spotifyUserInput
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();  // Convert FastAPI JSON to JS object
+        console.log("Items from backend:", data);
+    } catch(error) {
+        console.error("Error fetching items:", error);
+    }    
 }
 
 // Clicking button scrols into song transfer area
