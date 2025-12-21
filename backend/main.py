@@ -52,6 +52,10 @@ class SpotifyToYoutube(BaseModel):
 class SpotifySongURI(BaseModel):
     track_uris: list[str]
 
+class YouTubeToSpotifyTransfer(BaseModel):
+    youtube_playlist_id: str
+    spotify_playlist_name: str
+
 
 """ Youtube API Endpoints """
 @app.get("/youtube_playlist_id/{youtube_playlist_id}")
@@ -200,9 +204,11 @@ def add_songs_to_spotify_playlist(
 
 @app.post("/youtube-to-spotify")
 def youtube_to_spotify(
-    youtube_playlist_id: str,
-    spotify_playlist_name: str,
+    YTSpfyObj: YouTubeToSpotifyTransfer
 ):
+    youtube_playlist_id = YTSpfyObj.youtube_playlist_id
+    spotify_playlist_name = YTSpfyObj.spotify_playlist_name
+
     yt_playlist_video_information = get_youtube_playlist_video_title(youtube_playlist_id)
 
     yt_songs_title_list = []

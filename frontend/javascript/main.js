@@ -46,9 +46,10 @@ window.addEventListener("DOMContentLoaded", () => {
     button === null || button === void 0 ? void 0 : button.addEventListener("click", () => {
         const youtubeUserInput = youtubeInputTextBox.value;
         const spotifyUserInput = spotifyInputTextBox.value;
-        console.log("user tpyed in box", youtubeUserInput);
-        console.log("user tpyed in box", spotifyUserInput);
-        get_youtube_playlist_video_title(youtubeUserInput);
+        console.log("user typed in box", youtubeUserInput);
+        console.log("user typyed in box", spotifyUserInput);
+        // get_youtube_playlist_video_title(youtubeUserInput);
+        transfer_songs_from_youtube_to_spotify(youtubeUserInput, spotifyUserInput);
     });
 });
 function get_youtube_playlist_video_title(user_input) {
@@ -58,7 +59,31 @@ function get_youtube_playlist_video_title(user_input) {
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-            const data = yield response.json(); // <-- Convert FastAPI JSON to JS object
+            const data = yield response.json(); // Convert FastAPI JSON to JS object
+            console.log("Items from backend:", data);
+        }
+        catch (error) {
+            console.error("Error fetching items:", error);
+        }
+    });
+}
+function transfer_songs_from_youtube_to_spotify(youtubeUserInput, spotifyUserInput) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield fetch(`http://127.0.0.1:8000/youtube-to-spotify`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    youtube_playlist_id: youtubeUserInput,
+                    spotify_playlist_name: spotifyUserInput
+                })
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = yield response.json(); // Convert FastAPI JSON to JS object
             console.log("Items from backend:", data);
         }
         catch (error) {
