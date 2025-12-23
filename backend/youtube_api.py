@@ -25,15 +25,15 @@ def get_playlist_videos_title(playlist_id: List[str]) -> List[str]:
         for item in response["items"]:
             title = item["snippet"]["title"]
             video_id = item["snippet"]["resourceId"]["videoId"]
-            videos.append((title, video_id))
+            videos.append((title))
 
         next_page = response.get("nextPageToken")
         if not next_page:
             break
 
-    return videos
+    return parse_video_titles(videos)
 
-# Uses regex to clean titles
+# Uses regex to clean titles of YT videos
 def parse_video_titles(song_titles_list: List[str]) -> List[str]:
     junk_phrases = [
         "official video",
@@ -61,14 +61,13 @@ def parse_video_titles(song_titles_list: List[str]) -> List[str]:
         "official 4k music video",
     ]
 
-    cleaned_titles = []
-
     def clean_title(song_title: str) -> str:
-        title = re.sub("\/()[]^*", "", title)
+        song_title = re.sub(r"\([^)]*\)", "", song_title)
+        song_title = re.sub(r"\[[^]]*\]", "", song_title)
 
         for phrase in junk_phrases:
-            title = re.sub(phrase, "", title, flags = re.IGNORECASE)
+            song_title = re.sub(phrase, "", song_title, flags = re.IGNORECASE)
 
-        return " ".join(title.split())
+        return " ".join(song_title.split())
     
     return [clean_title(song_title) for song_title in song_titles_list]

@@ -212,8 +212,8 @@ def youtube_to_spotify(
     yt_playlist_video_information = get_youtube_playlist_video_title(youtube_playlist_id)
 
     yt_songs_title_list = []
-    for listIndex in yt_playlist_video_information:
-        yt_songs_title_list.append(listIndex[0])
+    for list_index in yt_playlist_video_information:
+        yt_songs_title_list.append(list_index)
 
     # Get Spotify user's auth token
     user_spotify_token_local = user_spotify_token[0]["access_token"]
