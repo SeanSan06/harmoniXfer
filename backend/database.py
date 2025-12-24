@@ -13,14 +13,12 @@ def create_tables():
     cursor = connection.cursor()
 
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS events (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,     
+        CREATE TABLE IF NOT EXISTS statistics (
+            id INTEGER PRIMARY KEY CHECK (id = 1),
             total_songs_transferred INTEGER NOT NULL DEFAULT 0,
             total_playlists_transferred INTEGER NOT NULL DEFAULT 0,
             total_time_saved REAL NOT NULL DEFAULT 0,
-            avg_time_per_song REAL NOT NULL DEFAULT 0,
-            most_popular_genres TEXT,
-            most_popular_time_period TEXT,
+            avg_time_per_song REAL NOT NULL DEFAULT 0
         )          
     """)
     
