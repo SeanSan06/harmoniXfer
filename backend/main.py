@@ -297,6 +297,24 @@ def youtube_to_spotify(
     }
     # Important variables "yt_songs_title_list, user_spotify_token_local, song_uri_list, spotify_playlist_id"
 
+""" Database endpoints """
+@app.get("/database")
+def get_values_database():
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT
+            total_songs_transferred_field,
+            total_playlists_transferred_field,
+            total_time_saved_field,
+            avg_time_per_song_field
+        FROM statistics
+        WHERE id_field = 1
+    """)
+    data = cursor.fetchone()
+    connection.close()
+    
+    return data
 
 """ Serve Webpages """
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
