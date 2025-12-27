@@ -42,15 +42,18 @@ function getStatisticsFromDatabase() {
 window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const statisticsData = yield getStatisticsFromDatabase();
-        console.log(statisticsData);
         const songTransfered = document.getElementById('songs-transfered');
         const playlistTransfered = document.getElementById('playlists-transfered');
         const timeSaved = document.getElementById('time-saved');
         const avgTransferTime = document.getElementById('avg-transfer-time');
         songTransfered.textContent = statisticsData.total_songs_transferred_field.toString();
         playlistTransfered.textContent = statisticsData.total_playlists_transferred_field.toString();
-        timeSaved.textContent = statisticsData.total_time_saved_field.toString() + " secs";
-        avgTransferTime.textContent = statisticsData.avg_time_per_song_field.toString() + " secs";
+        const minutesSavedInt = Math.floor(statisticsData.total_time_saved_field / 60);
+        const secondsSavedInt = Math.floor(statisticsData.total_time_saved_field % 60);
+        timeSaved.textContent = minutesSavedInt.toString() + "m " + secondsSavedInt.toString() + "s";
+        const avgMinutesSavedInt = Math.floor(statisticsData.avg_time_per_song_field / 60);
+        const avgSecondsSavedInt = Math.floor(statisticsData.avg_time_per_song_field % 60);
+        avgTransferTime.textContent = avgMinutesSavedInt.toString() + "m " + avgSecondsSavedInt.toString() + "s";
     }
     catch (error) {
         console.error("Error fetching database data:", error);
