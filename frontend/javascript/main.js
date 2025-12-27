@@ -13,7 +13,7 @@ const backendURL = "http://127.0.0.1:8000/youtube_playlist_id";
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
-// Home page animations upon loading
+// Home page animations upon loading webpage
 window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () {
     // Slide left animations
     console.log("Testing testing");
@@ -31,6 +31,22 @@ window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function
     document.querySelectorAll(".statistics-grid-subarea").forEach(element => {
         element.classList.add("appear-fade-in");
     });
+}));
+function getStatisticsFromDatabase() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch("http://127.0.0.1:8000/database");
+        const data = yield response.json();
+        return data;
+    });
+}
+window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const statisticsData = yield getStatisticsFromDatabase();
+        console.log(statisticsData);
+    }
+    catch (error) {
+        console.error("Error fetching database data:", error);
+    }
 }));
 // Transfer button(gets titles of YouTube videos for now)
 window.addEventListener("DOMContentLoaded", () => {

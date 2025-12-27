@@ -4,7 +4,7 @@ function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Home page animations upon loading
+// Home page animations upon loading webpage
 window.addEventListener("load", async () => {
     // Slide left animations
     console.log("Testing testing");
@@ -23,6 +23,29 @@ window.addEventListener("load", async () => {
     document.querySelectorAll(".statistics-grid-subarea").forEach(element => {
         element.classList.add("appear-fade-in");
     });
+});
+
+// Get data from database upon loading webpage
+interface Statistics {
+    total_songs_transferred_field: number;
+    total_playlists_transferred_field: number;
+    total_time_saved_field: number;
+    avg_time_per_song_field: number;
+}
+
+async function getStatisticsFromDatabase(): Promise<Statistics> {
+    const response = await fetch("http://127.0.0.1:8000/database");
+    const data: Statistics = await response.json();
+
+    return data;
+}
+window.addEventListener("load", async () => {
+    try {
+        const statisticsData = await getStatisticsFromDatabase();
+        console.log(statisticsData);
+    } catch(error) {
+        console.error("Error fetching database data:", error);
+    }
 });
 
 // Transfer button(gets titles of YouTube videos for now)
