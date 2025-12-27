@@ -49,8 +49,8 @@ window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function
         const avgTransferTime = document.getElementById('avg-transfer-time');
         songTransfered.textContent = statisticsData.total_songs_transferred_field.toString();
         playlistTransfered.textContent = statisticsData.total_playlists_transferred_field.toString();
-        timeSaved.textContent = statisticsData.total_time_saved_field.toString();
-        avgTransferTime.textContent = statisticsData.avg_time_per_song_field.toString();
+        timeSaved.textContent = statisticsData.total_time_saved_field.toString() + " secs";
+        avgTransferTime.textContent = statisticsData.avg_time_per_song_field.toString() + " secs";
     }
     catch (error) {
         console.error("Error fetching database data:", error);
