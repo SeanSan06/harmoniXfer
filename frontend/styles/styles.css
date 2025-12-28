@@ -530,11 +530,29 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     background-color: white;
 }
 
 #about-h2 {
     font-size: 4rem;
+    text-align: center;
 }
+
+
+.about-card h3 {
+    text-align: center;
+    font-size: 2rem;
+
+    color: white;
+}
+
+#about-area ol {
+    font-size: 1.35rem;
+
+    color: white;
+}
+
+
 
 /* ========== Footer area ========== */
