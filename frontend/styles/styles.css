@@ -406,42 +406,36 @@ html, body {
     width: 25%;
     border-radius: 16px;
 
-    background-color: lightcoral;
+    background-color: #212121;
 }
 
 #youtube_to_spotify_button {
     width: 350px;
     height: 32px;
-
-    background-color: red;
 }
 
 #database {
     width: 25%;
     border-radius: 16px;
 
-    background-color: lightyellow;
+    background-color: #212121;
 }
 
 #database_button {
     width: 350px;
     height: 32px;
-
-    background-color: yellow;
 }
 
 #spotify-to-youtube {
     width: 25%;
     border-radius: 16px;
 
-    background-color: lightgreen;
+    background-color: #212121;
 }
 
 #spotify-to-youtube-button {
     width: 350px;
     height: 32px;
-
-    background-color: green;
 }
 
 .text-box {
@@ -463,6 +457,70 @@ input:focus {
   outline-offset: 5px;
   background-color: #fff
 }
+
+.transfer-song-buttons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: 2px solid #fefefe;
+    text-transform: uppercase;
+    color: #fefefe;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.3s;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.transfer-song-buttons::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 6px);
+    height: calc(100% + 2px);
+    background-color: #212121;
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+}
+
+.transfer-song-buttons::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% - 50px);
+    background-color: #212121;
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+}
+
+.transfer-song-buttons:hover::before {
+    transform: translateY(-25px);
+    height: 0;
+}
+
+.transfer-song-buttons:hover::after {
+    transform: scaleX(0);
+    transition-delay: 0.15s;
+}
+
+.transfer-song-buttons:hover {
+    border: 2px solid #fefefe;
+}
+
+.transfer-song-buttons .spn2 {
+    position: relative;
+    z-index: 3;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+}
+
 
 /* ========== How it works area ========== */
 #about-area {
