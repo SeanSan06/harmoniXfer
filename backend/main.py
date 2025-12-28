@@ -12,6 +12,8 @@ import requests                                    # HTTP client used to make AP
 from urllib.parse import urlencode                 # Helps format URLs(Spotify reqs specifc URL formats)
 
 from backend.youtube_api import get_playlist_videos_title # My own file
+from backend.database import get_connection, create_tables, set_table_id
+
 
 """ Spotify API Set up """
 load_dotenv()
@@ -27,8 +29,11 @@ SPOTIFY_SCOPE = (
 )
 
 
-""" Fast API Set Up """
+""" Fast API Set Up and Database Connection"""
 app = FastAPI()
+create_tables()
+set_table_id()
+DATA_BASE = "statistics.db"
 
 app.add_middleware(
     CORSMiddleware,
@@ -98,7 +103,7 @@ def callback(
     user_token_data = response.json()
     
     user_spotify_token.append(user_token_data)
-    return user_token_data
+    return RedirectResponse("/")
 
 @app.get("/spotify/me")
 def get_spotify_user_account(
@@ -212,8 +217,8 @@ def youtube_to_spotify(
     yt_playlist_video_information = get_youtube_playlist_video_title(youtube_playlist_id)
 
     yt_songs_title_list = []
-    for listIndex in yt_playlist_video_information:
-        yt_songs_title_list.append(listIndex[0])
+    for list_index in yt_playlist_video_information:
+        yt_songs_title_list.append(list_index)
 
     # Get Spotify user's auth token
     user_spotify_token_local = user_spotify_token[0]["access_token"]
@@ -244,21 +249,74 @@ def youtube_to_spotify(
         spotfiy_access_token = user_spotify_token_local
     )
 
+    # Calcualte data
     songs_transferred = len(song_uri_list)
     yt_calls = math.ceil(songs_transferred / 50)
     spotify_calls = songs_transferred + 4
+    total_time_saved = (songs_transferred * 20) - (songs_transferred * 5)
+    avg_time_per_song = total_time_saved/songs_transferred
+
+    # Put data into SQLite database
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(""" 
+        UPDATE statistics
+        SET
+            total_songs_transferred_field = total_songs_transferred_field + ?,
+            total_playlists_transferred_field = total_playlists_transferred_field + ?,
+            total_time_saved_field = total_time_saved_field + ?
+        WHERE id_field = 1
+    """, (
+        songs_transferred,
+        1,
+        total_time_saved,
+    )
+    )
+    cursor.execute("""
+    
+        UPDATE statistics
+        SET avg_time_per_song_field = 
+            CASE
+                WHEN total_songs_transferred_field > 0
+                THEN total_time_saved_field / total_songs_transferred_field
+                ELSE 0
+            END
+        WHERE id_field = 1
+    """)
+    connection.commit()
+    connection.close()
 
     return {
         "success": (
-            f"{songs_transferred} songs have been transferred, "
-            f"{yt_calls} YouTube API calls made, and "
+            f"{songs_transferred} songs have been transferred!"
+            f"{yt_calls} YouTube API calls made!"
             f"{spotify_calls} Spotify API calls made!"
+            f"{total_time_saved} Time Saved!"
+            f"{avg_time_per_song} Average Time to Transfer a Song!"
         )
     }
     # Important variables "yt_songs_title_list, user_spotify_token_local, song_uri_list, spotify_playlist_id"
 
+""" Database endpoints """
+@app.get("/database")
+def get_values_database():
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT
+            total_songs_transferred_field,
+            total_playlists_transferred_field,
+            total_time_saved_field,
+            avg_time_per_song_field
+        FROM statistics
+        WHERE id_field = 1
+    """)
+    data = cursor.fetchone()
+    connection.close()
+    
+    return data
 
-""" Serve Webpages"""
+""" Serve Webpages """
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 @app.get("/")

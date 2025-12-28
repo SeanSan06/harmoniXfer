@@ -4,7 +4,7 @@ function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Home page animations upon loading
+// Home page animations upon loading webpage
 window.addEventListener("load", async () => {
     // Slide left animations
     console.log("Testing testing");
@@ -25,6 +25,45 @@ window.addEventListener("load", async () => {
     });
 });
 
+// Get data from database upon loading webpage
+interface Statistics {
+    total_songs_transferred_field: number;
+    total_playlists_transferred_field: number;
+    total_time_saved_field: number;
+    avg_time_per_song_field: number;
+}
+
+async function getStatisticsFromDatabase(): Promise<Statistics> {
+    const response = await fetch("http://127.0.0.1:8000/database");
+    const data: Statistics = await response.json();
+
+    return data;
+}
+window.addEventListener("load", async () => {
+    try {
+        const statisticsData = await getStatisticsFromDatabase();
+        
+        const songTransfered = document.getElementById('songs-transfered');
+        const playlistTransfered = document.getElementById('playlists-transfered');
+        const timeSaved = document.getElementById('time-saved');
+        const avgTransferTime = document.getElementById('avg-transfer-time');
+
+        songTransfered!.textContent = statisticsData.total_songs_transferred_field.toString();
+        playlistTransfered!.textContent = statisticsData.total_playlists_transferred_field.toString();
+
+        const minutesSavedInt = Math.floor(statisticsData.total_time_saved_field / 60);
+        const secondsSavedInt = Math.floor(statisticsData.total_time_saved_field % 60);
+        timeSaved!.textContent = minutesSavedInt.toString() + "m " + secondsSavedInt.toString() + "s";
+
+        const avgMinutesSavedInt = Math.floor(statisticsData.avg_time_per_song_field / 60);
+        const avgSecondsSavedInt = Math.floor(statisticsData.avg_time_per_song_field % 60);
+        avgTransferTime!.textContent = avgMinutesSavedInt.toString() + "m " + avgSecondsSavedInt.toString() + "s";
+        
+    } catch(error) {
+        console.error("Error fetching database data:", error);
+    }
+});
+
 // Transfer button(gets titles of YouTube videos for now)
 window.addEventListener("DOMContentLoaded", () => {
     function qs<T extends HTMLElement>(selector: string): T {
@@ -36,6 +75,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const youtubeInputTextBox = qs<HTMLInputElement>("#youtube_playlist_id_1")!;
     const spotifyInputTextBox = qs<HTMLInputElement>("#spotify_playlist_id_1")!;
     const button = qs<HTMLButtonElement>("#youtube_to_spotify_button")!;
+
+    button?.addEventListener("click", () => {
+        window.location.href = "http://127.0.0.1:8000/spotify"
+    });
+
 
     button?.addEventListener("click", () => {
         const youtubeUserInput = youtubeInputTextBox.value;
