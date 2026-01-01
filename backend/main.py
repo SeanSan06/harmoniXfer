@@ -207,6 +207,40 @@ def add_songs_to_spotify_playlist(
 
     return response.json()
 
+@app.get("/spotify/get-genres")
+def get_genres_of_songs(
+    spotify_song_track_URI_obj: SpotifySongURI = Body(...),
+    spotfiy_access_token: str = Header(...)
+):
+    headers = {
+        "Authorization": f"Bearer {spotfiy_access_token}",
+        "Content-Type": "application/json"
+    }
+
+    results = list()
+
+    for track_uri in spotify_song_track_URI_obj.track_uris:
+        track_id = track_uri.split(":")[-1]
+
+        track_response = requests.get(
+            f"https://api.spotify.com/v1/tracks/{track_id}",
+            headers = headers,
+        ).json()
+
+        artist_id = track_response["artists"][0]["id"]
+
+        artist_response = requests.get(
+            f"https://api.spotify.com/v1/artists/{artist_id}",
+            headers=headers
+        ).json()
+
+
+        results.append({
+            "genres": artist_response.get("genres", [])
+        })
+
+    return results
+
 @app.post("/youtube-to-spotify")
 def youtube_to_spotify(
     YTSpfyObj: YouTubeToSpotifyTransfer
@@ -249,6 +283,12 @@ def youtube_to_spotify(
         spotfiy_access_token = user_spotify_token_local
     )
 
+    # Get the genres for all songs transferred between playlists
+    genres = get_genres_of_songs(
+        spotify_song_track_URI_obj = SpotifySongURI(track_uris=song_uri_list),
+        spotfiy_access_token = user_spotify_token_local
+    )
+
     # Calcualte data
     songs_transferred = len(song_uri_list)
     yt_calls = math.ceil(songs_transferred / 50)
@@ -286,15 +326,16 @@ def youtube_to_spotify(
     connection.commit()
     connection.close()
 
-    return {
-        "success": (
-            f"{songs_transferred} songs have been transferred!"
-            f"{yt_calls} YouTube API calls made!"
-            f"{spotify_calls} Spotify API calls made!"
-            f"{total_time_saved} Time Saved!"
-            f"{avg_time_per_song} Average Time to Transfer a Song!"
-        )
-    }
+    return genres
+    # return {
+    #     "success": (
+    #         f"{songs_transferred} songs have been transferred!"
+    #         f"{yt_calls} YouTube API calls made!"
+    #         f"{spotify_calls} Spotify API calls made!"
+    #         f"{total_time_saved} Time Saved!"
+    #         f"{avg_time_per_song} Average Time to Transfer a Song!"
+    #     )
+    # }
     # Important variables "yt_songs_title_list, user_spotify_token_local, song_uri_list, spotify_playlist_id"
 
 """ Database endpoints """
