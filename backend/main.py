@@ -1,3 +1,4 @@
+from collections import Counter                    # Help to count genres and place in dict
 from dotenv import load_dotenv                     # Load the keys in the env file
 from fastapi import FastAPI                        # Backend Framework
 from fastapi.middleware.cors import CORSMiddleware # CORS header to allow specify headers only
@@ -289,9 +290,12 @@ def youtube_to_spotify(
         spotfiy_access_token = user_spotify_token_local
     )
 
-    genres_list = []
+    genre_counter = Counter()
+
     for item in genres:
-        genres_list.extend(item["genres"])
+        genre_counter.update(item["genres"])
+
+    genre_counter = dict(genre_counter)
 
     # Calcualte data
     songs_transferred = len(song_uri_list)
@@ -330,7 +334,7 @@ def youtube_to_spotify(
     connection.commit()
     connection.close()
 
-    return genres_list
+    return genre_counter
     # return {
     #     "success": (
     #         f"{songs_transferred} songs have been transferred!"
@@ -340,7 +344,7 @@ def youtube_to_spotify(
     #         f"{avg_time_per_song} Average Time to Transfer a Song!"
     #     )
     # }
-    # Important variables "yt_songs_title_list, user_spotify_token_local, song_uri_list, spotify_playlist_id"
+    # Important variables "yt_songs_title_list, user_spotify_token_local, song_uri_list, spotify_playlist_id, genre_counter"
 
 """ Database endpoints """
 @app.get("/database")
