@@ -385,7 +385,9 @@ def get_genres_database():
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute("""
-        SELECT genre_name, genre_count
+        SELECT 
+            genre_name,
+            genre_count
         FROM genres
         ORDER BY genre_count DESC
         LIMIT 1

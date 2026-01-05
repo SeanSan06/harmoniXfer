@@ -33,36 +33,67 @@ interface Statistics {
     avg_time_per_song_field: number;
 }
 
-async function getStatisticsFromDatabase(): Promise<Statistics> {
-    const response = await fetch("http://127.0.0.1:8000/database");
-    const data: Statistics = await response.json();
-
-    return data;
+interface PopularGenre {
+    genre_name: string;
+    genre_count: number;
 }
-window.addEventListener("load", async () => {
-    try {
-        const statisticsData = await getStatisticsFromDatabase();
-        
-        const songTransfered = document.getElementById('songs-transfered');
-        const playlistTransfered = document.getElementById('playlists-transfered');
-        const timeSaved = document.getElementById('time-saved');
-        const avgTransferTime = document.getElementById('avg-transfer-time');
 
-        songTransfered!.textContent = statisticsData.total_songs_transferred_field.toString();
-        playlistTransfered!.textContent = statisticsData.total_playlists_transferred_field.toString();
+    // Statisical data
+    async function getStatisticsFromDatabase(): Promise<Statistics> {
+        const response = await fetch("http://127.0.0.1:8000/database");
+        const data: Statistics = await response.json();
 
-        const minutesSavedInt = Math.floor(statisticsData.total_time_saved_field / 60);
-        const secondsSavedInt = Math.floor(statisticsData.total_time_saved_field % 60);
-        timeSaved!.textContent = minutesSavedInt.toString() + "m " + secondsSavedInt.toString() + "s";
-
-        const avgMinutesSavedInt = Math.floor(statisticsData.avg_time_per_song_field / 60);
-        const avgSecondsSavedInt = Math.floor(statisticsData.avg_time_per_song_field % 60);
-        avgTransferTime!.textContent = avgMinutesSavedInt.toString() + "m " + avgSecondsSavedInt.toString() + "s";
-        
-    } catch(error) {
-        console.error("Error fetching database data:", error);
+        return data;
     }
-});
+    
+    window.addEventListener("load", async () => {
+        try {
+            const statisticsData = await getStatisticsFromDatabase();
+            
+            const songTransfered = document.getElementById('songs-transfered');
+            const playlistTransfered = document.getElementById('playlists-transfered');
+            const timeSaved = document.getElementById('time-saved');
+            const avgTransferTime = document.getElementById('avg-transfer-time');
+
+            songTransfered!.textContent = statisticsData.total_songs_transferred_field.toString();
+            
+            playlistTransfered!.textContent = statisticsData.total_playlists_transferred_field.toString();
+
+            const minutesSavedInt = Math.floor(statisticsData.total_time_saved_field / 60);
+            const secondsSavedInt = Math.floor(statisticsData.total_time_saved_field % 60);
+            timeSaved!.textContent = minutesSavedInt.toString() + "m " + secondsSavedInt.toString() + "s";
+
+            const avgMinutesSavedInt = Math.floor(statisticsData.avg_time_per_song_field / 60);
+            const avgSecondsSavedInt = Math.floor(statisticsData.avg_time_per_song_field % 60);
+            avgTransferTime!.textContent = avgMinutesSavedInt.toString() + "m " + avgSecondsSavedInt.toString() + "s";
+            
+        } catch(error) {
+            console.error("Error fetching database data:", error);
+        }
+    });
+
+    // Genre data
+    async function getPopularGenreFromDatabase(): Promise<PopularGenre> {
+        const response = await fetch("http://127.0.0.1:8000/database-genres");
+        const data: PopularGenre = await response.json();
+
+        return data;
+    }
+
+    window.addEventListener("load", async () => {
+        try {
+            const genreData = await getPopularGenreFromDatabase();
+            
+            const popularGenre = document.getElementById('popular-genre');
+            const popularTimePeriod = document.getElementById('popular-time-period');
+
+            popularGenre!.textContent = genreData.genre_name.toString();
+            
+            popularTimePeriod!.textContent = genreData.genre_count.toString();
+        } catch(error) {
+            console.error("Error fetching database data:", error);
+        }
+    });
 
 // Transfer button(gets titles of YouTube videos for now)
 window.addEventListener("DOMContentLoaded", () => {

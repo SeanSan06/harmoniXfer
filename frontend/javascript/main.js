@@ -32,6 +32,7 @@ window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function
         element.classList.add("appear-fade-in");
     });
 }));
+// Statisical data
 function getStatisticsFromDatabase() {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch("http://127.0.0.1:8000/database");
@@ -54,6 +55,26 @@ window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function
         const avgMinutesSavedInt = Math.floor(statisticsData.avg_time_per_song_field / 60);
         const avgSecondsSavedInt = Math.floor(statisticsData.avg_time_per_song_field % 60);
         avgTransferTime.textContent = avgMinutesSavedInt.toString() + "m " + avgSecondsSavedInt.toString() + "s";
+    }
+    catch (error) {
+        console.error("Error fetching database data:", error);
+    }
+}));
+// Genre data
+function getPopularGenreFromDatabase() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch("http://127.0.0.1:8000/database-genres");
+        const data = yield response.json();
+        return data;
+    });
+}
+window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const genreData = yield getPopularGenreFromDatabase();
+        const popularGenre = document.getElementById('popular-genre');
+        const popularTimePeriod = document.getElementById('popular-time-period');
+        popularGenre.textContent = genreData.genre_name.toString();
+        popularTimePeriod.textContent = genreData.genre_count.toString();
     }
     catch (error) {
         console.error("Error fetching database data:", error);
