@@ -4,11 +4,14 @@ from googleapiclient.discovery import build
 import re
 from typing import List
 
-# Get Youtube API key
+
+""" Get Youtube API key """
 load_dotenv()
 API_KEY = os.getenv("YOUTUBE_API_KEY")
 YOUTUBE = build("youtube", "v3", developerKey=API_KEY)
 
+
+""" Youtube API helpers """
 # Get Youtube video titles from a selected playlist
 def get_playlist_videos_title(playlist_id: List[str]) -> List[str]:
     videos = []

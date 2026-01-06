@@ -13,7 +13,8 @@ from pydantic import BaseModel                     # Helps with type check and t
 import requests                                    # HTTP client used to make API requests(For Spotify)
 from urllib.parse import urlencode                 # Helps format URLs(Spotify reqs specifc URL formats)
 
-from backend.youtube_api import get_playlist_videos_title # Local file
+import backend.youtube_api as youtube              # Local file
+import backend.spotify_api as spotify              # Local file
 from backend.database import get_connection, create_tables, set_table_id
 
 
@@ -69,24 +70,14 @@ class YouTubeToSpotifyTransfer(BaseModel):
 def get_youtube_playlist_video_title(
     youtube_playlist_id: str
 ):
-    return get_playlist_videos_title(youtube_playlist_id)
+    return youtube.get_playlist_videos_title(youtube_playlist_id)
 
 
 """ Spotify API Endpoints """
 user_spotify_token = []
 @app.get("/spotify")
 def login_spotify():
-    parameters = {
-        "response_type": "code",
-        "client_id": SPOTIFY_CLIENT_ID,
-        "scope": SPOTIFY_SCOPE,
-        "redirect_uri": SPOTIFY_REDIRECT_URL,
-        "show_dialog": "true",
-    }
-
-    url = "https://accounts.spotify.com/authorize?" + urlencode(parameters)
-
-    return RedirectResponse(url)
+    return RedirectResponse(spotify.login_spotify_helper())
 
 @app.get("/auth/callback")
 def callback(
@@ -105,6 +96,7 @@ def callback(
     user_token_data = response.json()
     
     user_spotify_token.append(user_token_data)
+    
     return RedirectResponse("/")
 
 @app.get("/spotify/me")
