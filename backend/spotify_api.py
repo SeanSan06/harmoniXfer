@@ -108,7 +108,7 @@ def get_spotify_user_account_helper(
 
 def create_spotify_playlist_helper(
     playlist_name: str,
-    spotfiy_access_token: str = Header(...)        
+    spotfiy_access_token: str = Header(...)
 ):
     headers = {
         "Authorization": f"Bearer {spotfiy_access_token}",
