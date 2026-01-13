@@ -149,18 +149,18 @@ html, body {
     width: 20%;
     aspect-ratio: 4/1;
     border-radius: 8px;
-    font-size: 1.5rem;
+    font-size: 2.0rem;
 
     transition: all 2s ease;
     transform: translateX(calc(50vw - 50%));
 
-    background-color: rgb(0, 168, 0);
+    background-image: linear-gradient(144deg, #cdf342, #42f368 50%, #00c8eb);
     border: none;
     outline: none;
     box-shadow: none;
     cursor: pointer;
     
-    color: white;
+    color: #212121;
 }
 
     #transfer-song-button.animate {
@@ -329,7 +329,7 @@ html, body {
 #transfer-songs-h2 {
     font-size: 4rem;
 
-    color: white;
+    color: #212121;
 }
 
 #card-area {
@@ -566,3 +566,11 @@ input:focus {
 
 
 /* ========== Footer area ========== */
+footer {
+    padding: 20px; /* Some spacing inside the footer */
+    text-align: center; /* Center the text */
+    font-size: 1.5rem;
+
+    background-color: #212121; /* Dark background */
+    color: white; /* White text */
+}
