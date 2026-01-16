@@ -144,10 +144,4 @@ function transfer_songs_from_youtube_to_spotify(youtubeUserInput, spotifyUserInp
         }
     });
 }
-// Clicking button scrols into song transfer area
-const scrollButton = document.getElementById("transfer-song-button");
-const targetSection = document.getElementById("transfer-songs-area");
-scrollButton === null || scrollButton === void 0 ? void 0 : scrollButton.addEventListener("click", () => {
-    targetSection === null || targetSection === void 0 ? void 0 : targetSection.scrollIntoView({ behavior: "smooth" });
-});
 //# sourceMappingURL=main.js.map

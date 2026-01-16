@@ -171,7 +171,10 @@ async function transfer_songs_from_youtube_to_spotify(youtubeUserInput: string, 
     }    
 }
 
-// Clicking button scrols into song transfer area
+
+
+// Scroll feuatures
+// Clicking button scrolls into song transfer area
 const scrollButton = document.getElementById("transfer-song-button") as HTMLButtonElement | null;
 const targetSection = document.getElementById("transfer-songs-area") as HTMLElement | null;
 

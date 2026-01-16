@@ -29,6 +29,8 @@ html, body {
     padding: 0;
     z-index: -3;
 
+    scroll-behavior: smooth;
+
     background-color: rgb(235, 235, 235);
 }
 
