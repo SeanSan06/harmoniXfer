@@ -1,3 +1,14 @@
+/* Website themes */
+:root {
+    --primary-color: white;
+    --secondary-color: rgb(241, 243, 244);
+    --tertiary-color: rgb(154, 160, 166);
+    --accent-color: rgb(52, 226, 52);
+    --text-color: black;
+    --text-color-inverse: white;
+}
+
+
 /* ========== HTML and body area  ==========*/
 html, body {
     display: flex;
@@ -49,7 +60,7 @@ html, body {
 }
 
 #home p, #transfer p, #dashboard p, #about p {
-    color: rgb(52, 226, 52);
+    color: var(--accent-color)
 }
 
 
@@ -61,7 +72,7 @@ html, body {
     align-items: center;
     z-index: -2;
 
-    background-color: white;
+    background-color: var(--primary-color);
 }
 
 #title-caption-button {
@@ -127,7 +138,7 @@ html, body {
     #harmoniXfer-title span:nth-child(11) {animation-delay: 1.10s;}
 
 #xInTitle {
-    color: rgb(0, 168, 0);
+    color: var(--accent-color);
 }
 
 #harmoniXfer-caption {
@@ -137,7 +148,7 @@ html, body {
     transition: all 2s ease;
     transform: translateX(calc(50vw - 100%));
 
-    color: rgb(0, 168, 0);
+    color: var(--accent-color);
 }
 
     #harmoniXfer-caption.animate {
@@ -160,7 +171,7 @@ html, body {
     box-shadow: none;
     cursor: pointer;
     
-    color: #212121;
+    color: var(--text-color);
 }
 
     #transfer-song-button.animate {
@@ -232,13 +243,13 @@ html, body {
 
         animation: fadeIn 1.5s linear;
 
-        background-color: #212121;
+        background-color: var(--tertiary-color);
     }
 
     .statistics-subarea.appear-fade-in {
         animation: fadeIn 1.5s linear;
 
-        color: white;
+        color: var(--text-color);
     }
 
     @keyframes fadeIn {
@@ -247,8 +258,8 @@ html, body {
             color: white;
         }
         to {
-            background-color: #212121;
-            color: white;
+            background-color: var(--tertiary-color);
+            color: var(--text-color);
         }
     }
 
@@ -256,8 +267,8 @@ html, body {
     .statistics-grid-subarea.appear-fade-in {
         animation: subareaFadeIn 1.5s linear;
 
-        background-color: rgb(0, 168, 0);
-        color: white;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
     }
 
     @keyframes subareaFadeIn {
@@ -266,8 +277,8 @@ html, body {
             color: white;
         }
         to {
-            background-color: rgb(0, 168, 0);
-            color: white;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
         }
     }
 
@@ -329,7 +340,7 @@ html, body {
 #transfer-songs-h2 {
     font-size: 4rem;
 
-    color: #212121;
+    color: var(--text-color);
 }
 
 #card-area {
@@ -357,7 +368,7 @@ html, body {
 .card-title h3 {
     margin: 16px;
 
-    color: white;
+    color: var(--text-color);
 }
 
 #card-title-youtube-to-spotify {
@@ -384,7 +395,7 @@ html, body {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
 
-    background-color: rgb(0, 168, 0);
+    background-color: rgb(52, 226, 52);
 }
 
 .text-box-button {
@@ -404,7 +415,7 @@ html, body {
 .text-box-button h4 {
     margin-bottom: 8px;
 
-    color: white;
+    color: var(--text-color);
 }
 
 
@@ -416,7 +427,7 @@ html, body {
     width: 25%;
     border-radius: 16px;
 
-    background-color: #212121;
+    background-color: var(--tertiary-color);
 }
 
 #youtube_to_spotify_button {
@@ -428,7 +439,7 @@ html, body {
     width: 25%;
     border-radius: 16px;
 
-    background-color: #212121;
+    background-color: var(--tertiary-color);
 }
 
 #database_button {
@@ -440,7 +451,7 @@ html, body {
     width: 25%;
     border-radius: 16px;
 
-    background-color: #212121;
+    background-color: var(--tertiary-color);
 }
 
 #spotify-to-youtube-button {
@@ -475,9 +486,9 @@ input:focus {
     align-items: center;
     justify-content: center;
     padding: 15px 30px;
-    border: 2px solid #fefefe;
+    border: 2px solid var(--text-color);
     text-transform: uppercase;
-    color: #fefefe;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 600;
     font-size: 20px;
@@ -496,7 +507,7 @@ input:focus {
     transition: 0.3s ease-out;
     transform: scaleY(1);
 
-    background-color: #212121;
+    background-color: var(--tertiary-color);
 }
 
 .transfer-song-buttons::after {
@@ -506,7 +517,7 @@ input:focus {
     left: -2px;
     width: calc(100% + 4px);
     height: calc(100% - 50px);
-    background-color: #212121;
+    background-color: var(--tertiary-color);
     transition: 0.3s ease-out;
     transform: scaleY(1);
 }
@@ -522,7 +533,7 @@ input:focus {
 }
 
 .transfer-song-buttons:hover {
-    border: 2px solid #fefefe;
+    border: 2px solid var(--accent-color);
 }
 
 .transfer-song-buttons .spn2 {
@@ -541,7 +552,7 @@ input:focus {
     justify-content: center;
     align-items: center;
 
-    background-color: white;
+    background-color: var(--primary-color);
 }
 
 #about-h2 {
@@ -554,13 +565,13 @@ input:focus {
     text-align: center;
     font-size: 2rem;
 
-    color: white;
+    color: var(--text-color);
 }
 
 #about-area ol {
     font-size: 1.35rem;
 
-    color: white;
+    color: var(--text-color);
 }
 
 
@@ -571,6 +582,6 @@ footer {
     text-align: center; /* Center the text */
     font-size: 1.5rem;
 
-    background-color: #212121; /* Dark background */
-    color: white; /* White text */
+    background-color: var(--tertiary-color); /* Dark background */
+    color: var(--text-color);
 }
