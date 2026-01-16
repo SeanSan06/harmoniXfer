@@ -1,12 +1,21 @@
-/* Website themes */
+/* Website themes(light & dark) */
 :root {
     --primary-color: white;
     --secondary-color: rgb(241, 243, 244);
-    --tertiary-color: rgb(154, 160, 166);
+    --tertiary-color: rgb(161, 161, 161);
     --accent-color: rgb(52, 226, 52);
     --text-color: black;
     --text-color-inverse: white;
 }
+
+/* :root {
+    --primary-color: #494949;
+    --secondary-color: rgb(116, 116, 116);
+    --tertiary-color: #212121;
+    --accent-color: rgb(52, 226, 52);
+    --text-color: rgb(255, 255, 255);
+    --text-color-inverse: rgb(0, 0, 0);
+} */
 
 
 /* ========== HTML and body area  ==========*/
@@ -188,7 +197,7 @@ html, body {
     display: flex;
     flex-direction: column;
 
-    background-color: white;
+    background-color: var(--primary-color);
 }
 
 #statistics-title {
@@ -205,7 +214,7 @@ html, body {
     gap: 2rem;
     padding: 16px;
 
-    color: white;
+    color: var(--primary-color);
 }
 
 #statistics-grid h3 {
@@ -217,7 +226,7 @@ html, body {
 .statistics-subarea {
     text-align: center;
 
-    color: white;
+    color: var(--primary-color);
 }
 
 .statistics-grid-subarea {
@@ -335,6 +344,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--secondary-color);
 }
 
 #transfer-songs-h2 {
@@ -558,6 +568,8 @@ input:focus {
 #about-h2 {
     font-size: 4rem;
     text-align: center;
+
+    color: var(--text-color);
 }
 
 
