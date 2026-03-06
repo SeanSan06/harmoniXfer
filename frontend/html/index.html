@@ -14,10 +14,10 @@
             <p id="website-name-text">Harmoni<span id="xInTitle">X</span>fer</p>
         </div>
         <div id="navigation-links-subarea">
-            <div class="navigation-text" id="home"><p>Home</p></div>
-            <div class="navigation-text" id="transfer"><p>Transfer</p></div>
-            <div class="navigation-text" id="about"><p>About</p></div>
-            <div class="navigation-text" id="dashboard"><p>Dashboard</p></div>
+            <div class="navigation-text" id="home"><a href=""><p>Home</p></a></div>
+            <div class="navigation-text" id="transfer"><a href="#transfer-songs-area"><p>Transfer</p></a></div>
+            <div class="navigation-text" id="about"><a href="#about-area"><p>About</p></a></div>
+            <div class="navigation-text" id="dashboard"><a href=""><p>Dashboard</p></a></div>
         </div>
     </div>
 
@@ -31,7 +31,7 @@
                 <h1 id="harmoniXfer-title"><span>H</span><span>a</span><span>r</span><span>m</span><span>o</span><span>n</span><span>i</span><span id="xInTitle">X</span><span>f</span><span>e</span><span>r</span></h1>
                 <p id="harmoniXfer-caption">Syncing - Songs - Simplified</p>
             </div>
-            <button id="transfer-song-button">Transfer Songs</button>
+            <button id="transfer-song-button"><a  href="#transfer-songs-area">Transfer Songs</a></button>
         </div>
 
         <!-- statistics subarea -->
@@ -82,7 +82,7 @@
                         <input class="text-box" id="youtube_playlist_id_1" type="text" name="youtube_playlist_id_1" placeholder="123ABC" required>
                     </div>
                     <div class="text-box-pair">
-                        <h4>Spotify Playlist ID</h4>
+                        <h4>Spotify Playlist Name</h4>
                         <input class="text-box" id="spotify_playlist_id_1" type="text" name="spotify_playlist_id_1" placeholder="123ABC" required>
                     </div>
                     <button class="transfer-song-buttons" id="youtube_to_spotify_button"><span class="spn2">Transfer</span></button>
@@ -99,7 +99,7 @@
                         <input class="text-box" id="youtube_playlist_id_2" type="text" name="youtube_playlist_id_2" placeholder="123ABC" required>
                     </div>
                     <div class="text-box-pair">
-                        <h4>Spotify Playlist ID</h4>
+                        <h4>Spotify Playlist Name</h4>
                         <input class="text-box" id="spotify_playlist_id" type="text" name="spotify_playlist_id" placeholder="123ABC" required>
                     </div>
                     <button class="transfer-song-buttons" id="database_button"><span class="spn2">Transfer</span></button>
@@ -116,7 +116,7 @@
                         <input class="text-box" id="youtube_playlist_id_3" type="text" name="youtube_playlist_id_3" placeholder="123ABC" required>
                     </div>
                     <div class="text-box-pair">
-                        <h4>Spotify Playlist ID</h4>
+                        <h4>Spotify Playlist Name</h4>
                         <input class="text-box" id="spotify_playlist_id" type="text" name="spotify_playlist_id" placeholder="123ABC" required>
                     </div>
                     <button class="transfer-song-buttons" id="spotify-to-youtube-button"><span class="spn2">Transfer</span></button>
@@ -140,7 +140,8 @@
                     <ol>2. Learn more about designing backend code and how to follow RestAPI.</ol>
                     <ol>3. Learn how to use TypeScript and Pydantic.</ol>
                     <ol>4. Build more complex databases using SQLite and have data show up on website in real time.</ol>
-                    <ol>4. Practice incorporating basic machine learning models.</ol>
+                    <ol>5. Practice incorporating basic machine learning models.</ol>
+                    <ol>6. Use Scikit-learn to perform machine learn and predict new     songs users may like.</ol>
                 </div>
 
             </div>
@@ -150,9 +151,10 @@
                 </div>
                 <div class="about-area-ordered-list">
                     <ol>1. Call Youtube API to gather songs names.</ol>
-                    <ol>2. </ol>
-                    <ol>3. </ol>
-                    <ol>4. </ol>
+                    <ol>2. Call Spotify API and get a Spotify user token</ol>
+                    <ol>3. Use the token to get the playlist ID</ol>
+                    <ol>4. Use the token and YouTube video title to get a songs' URI</ol>
+                    <ol>5. Use the songs URI to add it into a playlist by its ID </ol>
                 </div>
 
             </div>
@@ -168,6 +170,7 @@
                     <ol>5. FastAPI</ol>
                     <ol>6. YouTube and Spotify API</ol>
                     <ol>7. SQLite</ol>
+                    <ol>8. Scikit-learn</ol>
                 </div>
             </div>
         </div>
@@ -176,6 +179,8 @@
 
 
     <!-- ========== Footer area ========== -->
-    <div id="footer-area"></div>
+    <footer id="footer-area">
+        HarmoniXfer 2026 | SKS
+    </footer>
 </body>
 </html>

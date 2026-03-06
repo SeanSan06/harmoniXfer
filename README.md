@@ -1,47 +1,110 @@
-# HarmoniX
-A full-stack website currently in development that allows users to transfer songs between their Spotify and YouTube playlists.
+# HarmoniXfer
+A full stack web application that allows users to transfer songs between their Spotify and YouTube playlists automatically.
 
 ## Pictures of website
 ![Example Image](/frontend/images/homepage.png)
 
+## Features
+- Transfer playlists between Spotify and YouTube Music
+- Real-time playlist synchronization
+- Track transfer history with SQLite database
+
 ## Future features
-- Use Scikit learn to perform machine learning and recommend the user new songs based on songs in the playlist they have added to the website.
-- Design a dashboard that displays more statistical information and lets users use the song suggestion feature.
-- Clean up the color scheme, aiming for a simplistic and inviting website.
-- Add a footer and redesign the header bar. 
+- Use Scikit-learn to perform machine learning and recommend new songs based on playlists
+- Design a dashboard that displays statistical information and song suggestions
+- Clean up the color scheme for a simplistic and inviting design
+- Add footer and redesign the header bar
+
+## Setup
+
+### Prerequisites
+- Python 3.12 or higher
+- Node.js and npm (for TypeScript)
+- Spotify Developer Account
+- YouTube API credentials
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/harmoniXfer.git
+   cd harmoniXfer
+   ```
+
+2. **Set up Python virtual environment**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install all Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   This installs:
+   - **fastapi** - Modern web framework for building APIs
+   - **uvicorn** - ASGI server to run FastAPI
+   - **python-dotenv** - Loads environment variables from .env file
+   - **spotipy** - Spotify Web API wrapper
+   - **google-api-python-client** - YouTube Data API client
+   - **google-auth-oauthlib** - Google OAuth 2.0 authentication
+   - **google-auth-httplib2** - HTTP library for Google API authentication
+
+4. **Install TypeScript**
+   ```bash
+   npm install -g typescript
+   ```
+
+5. **Configure environment variables**
+   
+   Create a `.env` file in the project root (You will need to make a developer account for each of these 2 platforms):
+   ```
+   SPOTIFY_CLIENT_ID=your_spotify_client_id
+   SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+   YOUTUBE_API_KEY=your_youtube_api_key
+   ```
+
+6. **Run the application**
+   ```bash
+   uvicorn backend.main:app --reload
+   ```
+   
+   The API will be available at `http://127.0.0.1:8000`
+
+7. **Deactivate the virtual environment** (when done using/testing)
+   ```bash
+   deactivate
+   ```
 
 ## How it's made
-Technology used: HTML, CSS, TypeScript, FastAPI, Python, SQLite, YouTube API, and Spotify API.
 
-**HTML**: I am using HTML to layout all of the content for each of the web pages(Home, Song Transfer, and About areas)
+**Technology used**: HTML, CSS, TypeScript, FastAPI, Python, SQLite, YouTube API, and Spotify API.
 
-**CSS**: I am using CSS to create a simplistic and animated website that aims to make the website feel alive.
+**HTML**: Layout structure for all web pages (Home, Song Transfer, and About sections)
 
-**TypeScript**: I am using TypeScript to give dynamic functionality to the website. Also, so the frontend can communicate with the backend.
+**CSS**: Creates a simplistic and animated website with smooth transitions and effects
 
-**FastAPI with Python**: I am using FastAPI to create a custom API that allows for real-time communication between the frontend and the backend. 
+**TypeScript**: Provides dynamic functionality and frontend-backend communication
 
-**SQLite**: I am using SQLite as our database, as I wanted a lightweight database that stores simple data, such as the number of songs transferred.
+**FastAPI with Python**: Custom REST API enabling real-time communication between frontend and backend
 
-**YouTube**: I am using the YouTube API to get all the titles from a specific playlist. The user can simply type in the playlist's ID to get the data from it.
+**SQLite**: Lightweight database for storing transfer history and statistics
 
-**Spotify**: I am using the Spotify API to get playlists and input songs into them based on what was in a user's YouTube playlists.
+**YouTube API**: Retrieves playlist data and song titles from YouTube playlists
 
-## Depenencies
-- pip install fastapi
-- pip install uvicorn
-- sudo apt update
-- sudo apt install python3 python3-pip
-- pip install python-dotenv
-- pip install google-api-python-client
-- npm install -g typescript
-- pip install spotify
+**Spotify API**: Manages Spotify playlists and adds songs based on YouTube playlist data
 
+## What I learned
 
-## What I learned/learning
-I am learning more about using TypeScript and how to make custom objects that are especially useful when sending and recieve data from the backend. I am also learning more about designed more intricate websites with more animated parts. Additionally, I am learning how to build larger backends that utilize more APIs and libraries.
+- Building type-safe frontends with TypeScript and custom objects for data transfer
+- Designing animated, interactive web interfaces with CSS
+- Creating scalable backend APIs with FastAPI
+- Integrating multiple third-party APIs (Spotify and YouTube)
+- Managing database operations with SQLite
+- Implementing OAuth authentication flows
 
 ## Credits
-Thank you to YouTube API and Spotify API for the backend functionality.
-Thank you to [TISEPSE](https://uiverse.io/profile/TISEPSE) for the animated button UI.
-Thank you to [Cohen](https://uiverse.io/profile/cohencoo) for the animated text box input UI.
+- YouTube API and Spotify API for backend functionality
+- [TISEPSE](https://uiverse.io/profile/TISEPSE) for the animated button UI
+- [Cohen](https://uiverse.io/profile/cohencoo) for the animated text box input UI
