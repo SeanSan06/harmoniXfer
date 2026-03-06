@@ -6,3 +6,9 @@ __pycache__/
 
 # Ignore virtual environment
 venv/
+
+# Ignore compiled JavaScript and TypeScript artifacts
+frontend/javascript/*.js
+frontend/javascript/*.js.map
+frontend/javascript/*.d.ts
+frontend/javascript/*.d.ts.map
