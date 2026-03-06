@@ -37,10 +37,19 @@ A full stack web application that allows users to transfer songs between their S
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. **Install Python dependencies**
+3. **Install all Python dependencies**
    ```bash
    pip install -r requirements.txt
    ```
+   
+   This installs:
+   - **fastapi** - Modern web framework for building APIs
+   - **uvicorn** - ASGI server to run FastAPI
+   - **python-dotenv** - Loads environment variables from .env file
+   - **spotipy** - Spotify Web API wrapper
+   - **google-api-python-client** - YouTube Data API client
+   - **google-auth-oauthlib** - Google OAuth 2.0 authentication
+   - **google-auth-httplib2** - HTTP library for Google API authentication
 
 4. **Install TypeScript**
    ```bash
@@ -49,7 +58,7 @@ A full stack web application that allows users to transfer songs between their S
 
 5. **Configure environment variables**
    
-   Create a `.env` file in the project root (You will need to make an developer account for each of these 2 platforms):
+   Create a `.env` file in the project root (You will need to make a developer account for each of these 2 platforms):
    ```
    SPOTIFY_CLIENT_ID=your_spotify_client_id
    SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
