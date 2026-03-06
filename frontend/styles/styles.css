@@ -190,38 +190,40 @@ html, body {
     }
 
 #statistics {
-    width: 30vw;
-    height: 75vh;
+    width: clamp(300px, 35vw, 500px);
     box-sizing: border-box;
-    padding: 8px;
+    padding: 16px;
     border-radius: 16px;
     position: relative;
     display: flex;
     flex-direction: column;
+    margin-right: 2rem;
 
     background-color: var(--primary-color);
 }
 
 #statistics-title {
-    font-size: 4em;
-    margin: 0px;
+    font-size: clamp(2rem, 3vw, 4rem);
+    margin: 0 0 16px 0;
     text-decoration: underline;
+    flex-shrink: 0;
 }
 
 #statistics-grid {
     display: grid;
-    flex: 1;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 16px;
+    gap: 1rem;
+    padding: 8px;
+    flex: 1;
+    overflow: hidden;
 
     color: var(--primary-color);
 }
 
 #statistics-grid h3 {
     margin: 0px;
-    font-size: 1.5rem;
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
     text-align: center;
 }
 
@@ -235,27 +237,26 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border-radius: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .statistics-grid-subarea p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    font-size: 2.5rem;
+    font-size: clamp(1.2rem, 1.5vw, 2rem);
+    margin: 4px 0 0 0;
 }
 
     /* Fade in */
     /* Fade in for statistics box */
     #statistics.appear-fade-in {
-        width: 30vw;
-        height: 75vh;
-
         animation: fadeIn 1.5s linear;
 
         background-color: var(--tertiary-color);
     }
+
 
     .statistics-subarea.appear-fade-in {
         animation: fadeIn 1.5s linear;
